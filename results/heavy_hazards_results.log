@@ -1,0 +1,44 @@
+Pipeline Hazard Detection Results
+=================================
+Total instructions: 7
+Total cycles: 22
+Stall cycles: 10
+Pipeline CPI: 3.14
+
+Cycle-by-cycle pipeline table:
+Cycle | IF     | ID     | EX     | MEM    | WB
+------|--------|--------|--------|--------|------
+1     | I1     | .      | .      | .      | .     
+2     | I2     | I1     | .      | .      | .     
+3     | I3     | I2     | I1     | .      | .     
+4     | I3     | I2     | STALL  | I1     | .     
+5     | I3     | I2     | STALL  | STALL  | I1    
+6     | I4     | I3     | I2     | STALL  | STALL 
+7     | I4     | I3     | STALL  | I2     | STALL 
+8     | I4     | I3     | STALL  | STALL  | I2    
+9     | I5     | I4     | I3     | STALL  | STALL 
+10    | I5     | I4     | STALL  | I3     | STALL 
+11    | I5     | I4     | STALL  | STALL  | I3    
+12    | I6     | I5     | I4     | STALL  | STALL 
+13    | I6     | I5     | STALL  | I4     | STALL 
+14    | I6     | I5     | STALL  | STALL  | I4    
+15    | I7     | I6     | I5     | STALL  | STALL 
+16    | I7     | I6     | STALL  | I5     | STALL 
+17    | I7     | I6     | STALL  | STALL  | I5    
+18    | .      | I7     | I6     | STALL  | STALL 
+19    | .      | .      | I7     | I6     | STALL 
+20    | .      | .      | .      | I7     | I6    
+21    | .      | .      | .      | .      | I7    
+22    | .      | .      | .      | .      | .     
+
+Hazards detected:
+Cycle 4: I2: add x4, x1, x5 needs x1, which is still being produced by I1: add x1, x2, x3
+Cycle 5: I2: add x4, x1, x5 needs x1, which is still being produced by I1: add x1, x2, x3
+Cycle 7: I3: sub x6, x4, x1 needs x4, which is still being produced by I2: add x4, x1, x5
+Cycle 8: I3: sub x6, x4, x1 needs x4, which is still being produced by I2: add x4, x1, x5
+Cycle 10: I4: lw x7, 0(x6) needs x6, which is still being produced by I3: sub x6, x4, x1
+Cycle 11: I4: lw x7, 0(x6) needs x6, which is still being produced by I3: sub x6, x4, x1
+Cycle 13: I5: add x8, x7, x4 needs x7, which is still being produced by I4: lw x7, 0(x6)
+Cycle 14: I5: add x8, x7, x4 needs x7, which is still being produced by I4: lw x7, 0(x6)
+Cycle 16: I6: beq x8, x1, done needs x8, which is still being produced by I5: add x8, x7, x4
+Cycle 17: I6: beq x8, x1, done needs x8, which is still being produced by I5: add x8, x7, x4

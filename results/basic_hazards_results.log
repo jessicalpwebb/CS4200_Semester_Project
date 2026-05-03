@@ -1,0 +1,38 @@
+Pipeline Hazard Detection Results
+=================================
+Total instructions: 5
+Total cycles: 18
+Stall cycles: 8
+Pipeline CPI: 3.60
+
+Cycle-by-cycle pipeline table:
+Cycle | IF     | ID     | EX     | MEM    | WB
+------|--------|--------|--------|--------|------
+1     | I1     | .      | .      | .      | .     
+2     | I2     | I1     | .      | .      | .     
+3     | I3     | I2     | I1     | .      | .     
+4     | I3     | I2     | STALL  | I1     | .     
+5     | I3     | I2     | STALL  | STALL  | I1    
+6     | I4     | I3     | I2     | STALL  | STALL 
+7     | I4     | I3     | STALL  | I2     | STALL 
+8     | I4     | I3     | STALL  | STALL  | I2    
+9     | I5     | I4     | I3     | STALL  | STALL 
+10    | I5     | I4     | STALL  | I3     | STALL 
+11    | I5     | I4     | STALL  | STALL  | I3    
+12    | .      | I5     | I4     | STALL  | STALL 
+13    | .      | I5     | STALL  | I4     | STALL 
+14    | .      | I5     | STALL  | STALL  | I4    
+15    | .      | .      | I5     | STALL  | STALL 
+16    | .      | .      | .      | I5     | STALL 
+17    | .      | .      | .      | .      | I5    
+18    | .      | .      | .      | .      | .     
+
+Hazards detected:
+Cycle 4: I2: sub x4, x1, x5 needs x1, which is still being produced by I1: add x1, x2, x3
+Cycle 5: I2: sub x4, x1, x5 needs x1, which is still being produced by I1: add x1, x2, x3
+Cycle 7: I3: lw x6, 0(x4) needs x4, which is still being produced by I2: sub x4, x1, x5
+Cycle 8: I3: lw x6, 0(x4) needs x4, which is still being produced by I2: sub x4, x1, x5
+Cycle 10: I4: add x7, x6, x8 needs x6, which is still being produced by I3: lw x6, 0(x4)
+Cycle 11: I4: add x7, x6, x8 needs x6, which is still being produced by I3: lw x6, 0(x4)
+Cycle 13: I5: sw x7, 4(x9) needs x7, which is still being produced by I4: add x7, x6, x8
+Cycle 14: I5: sw x7, 4(x9) needs x7, which is still being produced by I4: add x7, x6, x8

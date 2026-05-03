@@ -1,0 +1,7 @@
+add x1, x2, x3
+add x4, x1, x5
+sub x6, x4, x1
+lw x7, 0(x6)
+add x8, x7, x4
+beq x8, x1, done
+sw x8, 8(x2)

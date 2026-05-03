@@ -1,0 +1,23 @@
+Pipeline Hazard Detection Results
+=================================
+Total instructions: 5
+Total cycles: 10
+Stall cycles: 0
+Pipeline CPI: 2.00
+
+Cycle-by-cycle pipeline table:
+Cycle | IF     | ID     | EX     | MEM    | WB
+------|--------|--------|--------|--------|------
+1     | I1     | .      | .      | .      | .     
+2     | I2     | I1     | .      | .      | .     
+3     | I3     | I2     | I1     | .      | .     
+4     | I4     | I3     | I2     | I1     | .     
+5     | I5     | I4     | I3     | I2     | I1    
+6     | .      | I5     | I4     | I3     | I2    
+7     | .      | .      | I5     | I4     | I3    
+8     | .      | .      | .      | I5     | I4    
+9     | .      | .      | .      | .      | I5    
+10    | .      | .      | .      | .      | .     
+
+Hazards detected:
+No RAW hazards detected.

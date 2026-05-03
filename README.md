@@ -7,9 +7,7 @@ It focuses on RAW data hazards and shows how stalls affect pipeline performance.
 Pipeline Hazard Detection
 
 ## What it simulates
-The simulator models these five pipeline stages:
-
-IF -> ID -> EX -> MEM -> WB
+The simulator models the five pipeline stages: IF, ID, EX, MEM, WB
 
 The program checks for RAW hazards when an instruction needs a register that is still being produced by an older instruction in the pipeline. When this happens, the simulator freezes IF/ID and inserts a stall bubble.
 
@@ -42,5 +40,5 @@ The simulator prints:
 - cycle-by-cycle pipeline table
 - hazards detected
 
-## Why this fits computer architecture
+## Purpose
 This project explores pipeline hazards, instruction dependencies, stalls, CPI, and performance tradeoffs. It shows how dependencies between instructions can reduce pipeline efficiency even when the program has the same instruction count.
